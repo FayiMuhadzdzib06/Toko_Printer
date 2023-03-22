@@ -33,8 +33,8 @@
                     <td><img src="../gProduk/<?= $data["foto"]?>" alt="" width="70px"></td>
                     <td><?php echo $data['stok']; ?></td>
                     <td>
-                        <a href="#">Edit</a>
-                        <a href="produk/crud/hapus_roduk.php?id_produk=<?= $data['id_produk']; ?>" onclick="return confirm('Yakin Mau dihapuss??')" >Hapus</a>
+                        <a href="produk/crud/edit_produk.php?id_produk=<?= $data['id_produk']; ?>">Edit</a>
+                        <a href="produk/crud/hapus_produk.php?id_produk=<?= $data['id_produk']; ?>" onclick="return confirm('Yakin Mau dihapuss??')" >Hapus</a>
                     </td>
                 </tr>
                 <?php

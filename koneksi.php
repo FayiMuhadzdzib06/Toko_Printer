@@ -62,23 +62,23 @@
         return mysqli_affected_rows($koneksi);
     }
 
-    function updateUser($data){
+    function updateProduk($data){
         global $koneksi;
 
-        $id = htmlspecialchars($data['id_user']);
-        $nama_lengkap = htmlspecialchars($data['nama_lengkap']);
-        $username = htmlspecialchars($data['username']);
-        $password = htmlspecialchars($data['password']);
+        $id = htmlspecialchars($data['id_produk']);
+        $nama_produk = htmlspecialchars($data['nama_produk']);
+        $harga = $data['harga'];
         $foto = $_FILES['foto']['name'];
         $files = $_FILES['foto']['tmp_name'];
-        $roles = htmlspecialchars($data['roles']);
+        $stok = $data['stok'];
+        $deskripsi = htmlspecialchars($data['deskripsi']);
 
         if(empty($foto)){ // empty = buat ngecek klo isi variable trsbt kosong / gak ada isinya
-            $query = "UPDATE user SET nama_lengkap = '$nama_lengkap', username = '$username', password = '$password', roles = '$roles' WHERE id_user = '$id'";
+            $query = "UPDATE produk SET nama_produk = '$nama_produk', harga = '$harga', stok = '$stok', deskripsi = '$deskripsi' WHERE id_produk = '$id'";
             mysqli_query($koneksi, $query);
         }else{
-            $query = "UPDATE user SET nama_lengkap = '$nama_lengkap', username = '$username', password = '$password', foto = '$foto', roles = '$roles' WHERE id_user = '$id'";
-            move_uploaded_file($files, "image/".$foto);
+            $query = "UPDATE produk SET nama_produk = '$nama_produk', harga = '$harga', foto = '$foto', stok = '$stok', deskripsi = '$deskripsi' WHERE id_produk = '$id'";
+            move_uploaded_file($files, "C:/xampp/htdocs/TokoPrinter/imageProduk/".$foto);
             mysqli_query($koneksi, $query);
         }
 
