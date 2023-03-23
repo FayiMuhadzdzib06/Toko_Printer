@@ -15,10 +15,12 @@
         if($cek_pengguna['roles'] == 'Admin'){
             $_SESSION['username'] = $username;
             $_SESSION['roles'] = 'Admin';
+            $_SESSION['status']='login';
             header("location:../admin/index.php");
         }else if($cek_pengguna['roles'] == 'Customer'){
             $_SESSION['username'] = $username;
             $_SESSION['roles'] = 'Customer';
+            $_SESSION['status']='login';
             header("location:../user/index.php");
         }
     }else{

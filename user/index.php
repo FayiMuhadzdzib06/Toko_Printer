@@ -1,3 +1,10 @@
+<?php 
+    session_start(); //jika ingin menggunakan session selalu awali dengan session_start()
+    if($_SESSION['status']!='login'){
+        header("location:../akses/login.php?pesan=belum_login");
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,7 +14,16 @@
     <title>Toko Printer</title>
 </head>
 <body>
-    <h1>Selamat Datang Di Toko Printer</h1>
+    <?php 
+        include '../koneksi.php';
+        $user = $_SESSION['username'];
+        $iden = mysqli_query($koneksi, "SELECT * FROM user WHERE username = '$user'");
+        foreach($iden as $data){
+            ?>
+                <h1>Selamat Datang <?= $data['nama_lengkap']; ?></h1>
+            <?php
+        }
+    ?>
     <h4>Memiliki Berbagai Jenis Printer</h4>
     <table border="1" cellpadding="10" cellspacing="0">
         <tr>
@@ -19,7 +35,6 @@
             <th>Aksi</th>
         </tr>
         <?php 
-        include '../koneksi.php';
             $query = mysqli_query($koneksi, "SELECT * FROM produk");
             $no = 1;
             foreach($query as $data){
@@ -28,10 +43,10 @@
                     <td><?php echo $no++; ?></td>
                     <td><?php echo $data['nama_produk']; ?></td>
                     <td><?php echo "Rp. " . number_format($data['harga']) . " ,-" ?></td>
-                    <td><?php echo $data['foto']; ?></td>
+                    <td><img src="../imageProduk/<?= $data['foto']; ?>" alt="" width="70px"></td>
                     <td><?php echo $data['stok']; ?></td>
                     <td>
-                        <a href="#">Detail</a>
+                        <a href="detail.php?id_produk=<?= $data['id_produk']; ?>">Detail</a>
                         <a href="#">Pesan</a>
                     </td>
                 </tr>

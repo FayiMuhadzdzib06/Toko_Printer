@@ -1,3 +1,10 @@
+<?php 
+    session_start(); //jika ingin menggunakan session selalu awali dengan session_start()
+    if($_SESSION['status']!='login'){
+        header("location:../akses/login.php?pesan=belum_login");
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,7 +37,7 @@
                     <td><?php echo $no++; ?></td>
                     <td><?php echo $data['nama_produk']; ?></td>
                     <td><?php echo "Rp. " . number_format($data['harga']) . " ,-" ?></td>
-                    <td><img src="../gProduk/<?= $data["foto"]?>" alt="" width="70px"></td>
+                    <td><img src="../imageProduk/<?= $data["foto"]?>" alt="" width="70px"></td>
                     <td><?php echo $data['stok']; ?></td>
                     <td>
                         <a href="produk/crud/edit_produk.php?id_produk=<?= $data['id_produk']; ?>">Edit</a>

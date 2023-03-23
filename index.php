@@ -31,11 +31,11 @@
                     <td><?php echo $no++; ?></td>
                     <td><?php echo $data['nama_produk']; ?></td>
                     <td><?php echo "Rp. " . number_format($data['harga']) . " ,-" ?></td>
-                    <td><img src="image_produk/<?= $data['foto']; ?>" alt="" width="70px"></td>
+                    <td><img src="imageProduk/<?= $data['foto']; ?>" alt="" width="70px"></td>
                     <td><?php echo $data['stok']; ?></td>
                     <td>
-                        <a href="#">Detail</a>
-                        <a href="user/akses/login.php" onclick="return confirm('Silahkan Login Terlebih dahulu!!!')">Pesan</a>
+                        <a href="akses/login.php" onclick="return confirm('Silahkan Login Terlebih dahulu!!!')">Detail</a>
+                        <a href="akses/login.php" onclick="return confirm('Silahkan Login Terlebih dahulu!!!')">Pesan</a>
                     </td>
                 </tr>
                 <?php

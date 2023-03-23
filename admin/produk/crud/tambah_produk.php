@@ -5,16 +5,16 @@
         if(tambahProduk($_POST) > 0){
             ?>
             <script>
-                // alert('Data Berhasil Ditambah!!');
-                // window.location = '../../index.php';
+                alert('Data Berhasil Ditambah!!');
+                window.location = '../../index.php';
             </script>
             <?php
         }else{
             ?>
-            <!-- <script>
+            <script>
                 alert('Data Gagal Ditambah!!');
                 window.location = '../../index.php';
-            </script> -->
+            </script>
             <?php
         }
     }
