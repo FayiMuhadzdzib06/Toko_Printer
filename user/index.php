@@ -1,20 +1,20 @@
 <?php
 include '../koneksi.php';
-if ($_SESSION['status'] = 'login') {
-    if ($_SESSION['roles'] = 'Admin') {
-        ?>
-            <script>
-                alert('Minimal Logout dlu!!!!');
-                window.location = '../admin/index.php?pesan=logout_dlu';
-            </script>
-        <?php
-    }
-    ?>
+if (!isset($_SESSION['status'])) {
+?>
     <script>
         alert('Silahkan Login Terlebih dahulu!!!!');
         window.location = '../akses/login.php?pesan=belum_login';
     </script>
-    <?php
+<?php
+}
+if ($_SESSION['roles'] != 'Customer') {
+?>
+    <script>
+        alert('Minimal Logout dlu!!!!');
+        window.location = '../admin/index.php?pesan=logout_dlu';
+    </script>
+<?php
 }
 ?>
 

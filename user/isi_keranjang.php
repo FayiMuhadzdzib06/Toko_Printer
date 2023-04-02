@@ -51,7 +51,6 @@ if (empty($_SESSION["cart"] || isset($_SESSION["cart"]))) {
                     <a href="hapus_keranjang.php?id_produk=<?= $data["id_produk"]; ?>" onclick="return confirm('Apakah Anda yakin ingin dihapus??')">Hapus</a>
                 </td>
             </tr>
-
         <?php endforeach; ?>
         <tr>
             <td colspan="5">

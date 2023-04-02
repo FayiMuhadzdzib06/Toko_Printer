@@ -48,19 +48,3 @@ include '../koneksi.php';
 </body>
 
 </html>
-
-<?php 
-    // if(isset($_POST['checkout'])){
-    //     if(checkout($_POST) > 0){
-    //         ?>
-    //         <script>
-    //             alert("Yeayyy!! Barang berhasil dipesan, silahkan ditunggu proses verifikasinya ya");
-    //             window.location = 'index.php';
-    //         </script>
-    //         <?php
-    //     }else{
-    //         echo mysqli_error($koneksi);
-    //     }
-    // }
-
-?>

@@ -102,7 +102,7 @@
         $files = $_FILES['foto']['tmp_name'];
         $roles = $data['roles'];
 
-        if(empty($foto)){ // empty = buat ngecek klo isi variable trsbt kosong / gak ada isinya
+        if(empty($foto)){ // empty = buat ngecek klo isi variable trsbt kosong / gak ada isinya, klo gak ada isinya bakal diisi dengan nilai TRUE klo ada isinya diisi dengan nilai FALSE
             $query = "UPDATE user SET nama_lengkap = '$nama_lengkap', username = '$username', password = '$password', roles = '$roles' WHERE id_user = '$id'";
             mysqli_query($koneksi, $query);
         }else{

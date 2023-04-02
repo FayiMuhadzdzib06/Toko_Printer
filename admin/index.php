@@ -1,7 +1,6 @@
 <?php
 include '../koneksi.php';
-//jika ingin menggunakan session selalu awali dengan session_start()
-if ($_SESSION['status'] != 'login') {
+if (!isset($_SESSION['status'])) {
 ?>
     <script>
         alert('Silahkan Login Terlebih dahulu!!!!');
