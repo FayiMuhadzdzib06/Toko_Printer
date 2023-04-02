@@ -1,6 +1,5 @@
 <?php
-include '../koneksi.php';
-//jika ingin menggunakan session selalu awali dengan session_start()
+session_start(); //jika ingin menggunakan session selalu awali dengan session_start()
 if ($_SESSION['status'] != 'login') {
 ?>
     <script>
@@ -29,7 +28,6 @@ if ($_SESSION['roles'] != 'Admin') {
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Halaman Admin</title>
     <style>
         * {
@@ -62,8 +60,7 @@ if ($_SESSION['roles'] != 'Admin') {
         }
 
         .sidebar h1 {
-            margin: 30px 0 0 20px;
-            text-align: center;
+            margin: 20px 0 40px 20px;
             color: #016124;
             font-size: 2.5em;
         }
@@ -73,8 +70,8 @@ if ($_SESSION['roles'] != 'Admin') {
             font-weight: normal;
         }
 
-        .sidebar a:nth-child(2) li {
-            margin-top: 40px;
+        .sidebar a:nth-child(3) li {
+            margin-top: 10px;
             color: #455045;
             background-color: #70bda2;
         }
@@ -98,8 +95,6 @@ if ($_SESSION['roles'] != 'Admin') {
 
         .main {
             grid-area: 'main';
-            overflow-x: scroll;
-            position: relative;
         }
 
         .main .nav {
@@ -110,21 +105,7 @@ if ($_SESSION['roles'] != 'Admin') {
             align-items: center;
             justify-content: space-between;
         }
-        .main .nav i {
-            position: fixed;
-            font-size: 22px;
-            cursor: pointer;
-            top: 73px;
-            margin-left: 10px;
-            width: 50px;
-            height: 50px;
-            border: 2px solid #27915c75;
-            border-radius: 50%;
-            background-color: #01612415;
-            backdrop-filter: blur(6px);
-            display: grid;
-            place-items: center;
-        }
+
         .main h1 {
             padding-left: 20px;
             color: #016124;
@@ -152,7 +133,7 @@ if ($_SESSION['roles'] != 'Admin') {
         }
 
         .main h2 {
-            margin: 30px 0 30px 25px;
+            margin: 20px 0 30px 25px;
             color: #455045;
         }
 
@@ -165,24 +146,23 @@ if ($_SESSION['roles'] != 'Admin') {
             border: 2px solid #016124;
             font-weight: bold;
             font-size: 15px;
-        } 
+        }
+
         .main table {
             width: calc(100% - 50px);
             margin: 25px auto;
         }
-
-    
     </style>
 </head>
 
 <body>
-    <div id="induk" class="container">
+    <div class="container">
         <ul class="sidebar">
-            <h1>To<span>Printer</span></h1>
-            <a href="">
+            <h1>Prin<span>Store</span></h1>
+            <a href="index.php">
                 <li>Data Produk</li>
             </a>
-            <a href="user.php">
+            <a href="">
                 <li>Data User</li>
             </a>
             <a href="transaksi.php">
@@ -194,40 +174,39 @@ if ($_SESSION['roles'] != 'Admin') {
         </ul>
         <div class="main">
             <div class="nav">
-                <i class="fa fa-close" aria-hidden="true" id="btn"></i>
                 <h1>Welcome <span>Admin</span></h1>
                 <div class="nameAdmin">
                     <img src="../imageUser/<?= $_SESSION['foto'] ?>" class="foto">
                     <p><?= $_SESSION['nama_lengkap']; ?></p>
                 </div>
             </div>
-            <h2>Data Produk</h2>
+            <h2>Data User</h2>
             <a href="produk/crud/tambah_produk.php" class="tp">Tambah Produk</a>
-            
             <table border="1" cellpadding="10" cellspacing="0">
                 <tr>
                     <th>No</th>
-                    <th>Jenis Produk</th>
-                    <th>Harga</th>
+                    <th>Nama</th>
+                    <th>Username</th>
                     <th>Foto</th>
-                    <th>Stok</th>
+                    <th>Roles</th>
                     <th>Aksi</th>
                 </tr>
                 <?php
+                include '../koneksi.php';
 
-                $query = mysqli_query($koneksi, "SELECT * FROM produk");
+                $query = mysqli_query($koneksi, "SELECT * FROM user");
                 $no = 1;
                 foreach ($query as $data) {
                 ?>
                     <tr>
                         <td><?php echo $no++; ?></td>
-                        <td><?php echo $data['nama_produk']; ?></td>
-                        <td><?php echo "Rp. " . number_format($data['harga']) . " ,-" ?></td>
-                        <td><img src="../imageProduk/<?= $data["foto"] ?>" alt="" width="70px"></td>
-                        <td><?php echo $data['stok']; ?></td>
+                        <td><?php echo $data['nama_lengkap']; ?></td>
+                        <td><?php echo $data['username']; ?></td>
+                        <td><img src="../imageUser/<?= $data["foto"] ?>" alt="" width="70px"></td>
+                        <td><?php echo $data['roles']; ?></td>
                         <td>
-                            <a href="produk/crud/edit_produk.php?id_produk=<?= $data['id_produk']; ?>">Edit</a>
-                            <a href="produk/crud/hapus_produk.php?id_produk=<?= $data['id_produk']; ?>" onclick="return confirm('Yakin Mau dihapuss??')">Hapus</a>
+                            <a href="crudUser/edit_user.php?id_user=<?= $data['id_user']; ?>">Edit</a>
+                            <a href="crudUser/hapus_user.php?id_user=<?= $data['id_user']; ?>" onclick="return confirm('Yakin Mau dihapuss??')">Hapus</a>
                         </td>
                     </tr>
                 <?php
@@ -236,18 +215,6 @@ if ($_SESSION['roles'] != 'Admin') {
             </table>
         </div>
     </div>
-
-
-    <script>
-        const sidebar = document.querySelector('.container .sidebar');
-        const clsButton = document.getElementById('btn');
-        const induk = document.getElementById('#induk');
-        clsButton.addEventListener('click', function(){
-            induk.style.gridTemplateAreas = 'main';
-            sidebar.style.gridArea = '';
-            
-        });
-    </script>
 </body>
 
 </html>
