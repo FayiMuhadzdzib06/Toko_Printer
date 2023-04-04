@@ -17,6 +17,8 @@ include '../koneksi.php';
         $data = query("SELECT * FROM produk WHERE id_produk = '$id_produk'")[0];
         $subtotal = $data["harga"] * $kuantitas;
     ?>
+    <!-- form action ini ngarah ke proses checkout dengan mengGET id_produknya sebagai kunci untuk di masukkan ke dalam table transaksi -->
+    <!-- next buka proses_checkout.php, -->
     <form action="proses_checkout.php?id_produk=<?= $data['id_produk']; ?>" method="post">
         <label for="">Tanggal Transaksi<label><br>
         <input type="text" name="tgl_transaksi" value="<?= date('y-m-d'); ?>"><br><br>

@@ -52,12 +52,15 @@
         return mysqli_affected_rows($koneksi);
     }
 
-    // pesan produk
-    function pesanProduk($id, $stok){
+    // pengurangan stok
+    function penguranganStok($id, $stok){
         global $koneksi;
 
+        // jadi bikin variable buat nampung value stok/qty yang diinput user
         $stok = $_POST['qty'];
     
+        // cara nguranginnya adalah stok - $stok, maksudnya 'stok' ini adalah stok yang ada di database dan ;$stok' ini isi stok yang diinput user
+        // next buka checkout.php, liat komenan yang gw buat di atas form
         $query = "UPDATE produk SET stok = stok - '$stok' WHERE id_produk='$id'";
         mysqli_query($koneksi, $query);
     

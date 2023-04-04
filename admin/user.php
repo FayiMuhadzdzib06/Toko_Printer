@@ -1,5 +1,5 @@
 <?php
-session_start(); //jika ingin menggunakan session selalu awali dengan session_start()
+include '../koneksi.php';
 if ($_SESSION['status'] != 'login') {
 ?>
     <script>
@@ -192,7 +192,6 @@ if ($_SESSION['roles'] != 'Admin') {
                     <th>Aksi</th>
                 </tr>
                 <?php
-                include '../koneksi.php';
 
                 $query = mysqli_query($koneksi, "SELECT * FROM user");
                 $no = 1;
